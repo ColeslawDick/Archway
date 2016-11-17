@@ -1,25 +1,26 @@
 package rpcole;
 
-import ks.common.model.Pile;
+import ks.common.games.Solitaire;
+import ks.common.model.*;
 
-public class ViewReserveCardsMove implements IMove{
+public class ViewReserveCardsMove extends Move{
 
 	Pile source;
 	
 	@Override
-	public boolean doMove() {
+	public boolean doMove(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean undo() {
+	public boolean undo(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean valid() {
+	public boolean valid(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}

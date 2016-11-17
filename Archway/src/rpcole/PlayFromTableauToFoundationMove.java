@@ -1,27 +1,27 @@
 package rpcole;
 
-import ks.common.model.Card;
-import ks.common.model.Pile;
+import ks.common.games.Solitaire;
+import ks.common.model.*;
 
-public class PlayFromTableauToFoundationMove implements IMove{
+public class PlayFromTableauToFoundationMove extends Move{
 
 	Pile source, target;
 	Card activeCard;
 	
 	@Override
-	public boolean doMove() {
+	public boolean doMove(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean undo() {
+	public boolean undo(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean valid() {
+	public boolean valid(Solitaire game) {
 		// TODO Auto-generated method stub
 		return false;
 	}
