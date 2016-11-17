@@ -1,7 +1,5 @@
 package rpcole;
 
-
-
 import java.awt.Dimension;
 
 import ks.client.gamefactory.GameWindow;
@@ -21,7 +19,7 @@ public class Archway extends Solitaire {
 	Column tableauColumn1, tableauColumn2, tableauColumn3, tableauColumn4;
 	Pile foundationPile1, foundationPile2, foundationPile3, foundationPile4,foundationPile5, foundationPile6, foundationPile7, foundationPile8;
 	PileView RAStack, R2Stack, R3Stack, R4Stack, R5Stack, R6Stack, R7Stack;
-	PileView R10Stack, RJStack, RQStack, AHStack, ACStack, ADStack, ASStack;
+	PileView R10Stack, RJStack, RQStack, RKStack, AHStack, ACStack, ADStack, ASStack;
 	PileView KSStack, KCStack, KDStack, KHStack, R8Stack, R9Stack;
 	ColumnView tv1,tv2, tv3, tv4;
 	IntegerView scoreView;
@@ -41,7 +39,7 @@ public class Archway extends Solitaire {
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension (950, 700);
+		return new Dimension (980, 720);
 	}
 	
 	@Override
@@ -160,43 +158,139 @@ public class Archway extends Solitaire {
 		
 		//add widget for Ace Hearts Foundation Pile
 		AHStack = new PileView(foundationPile1);
-		AHStack.setBounds (50+w,471, w, h);
+		AHStack.setBounds (50+w,511, w, h);
 		container.addWidget (AHStack);
 		
 		//add widget for Ace Spades Foundation Pile
 		ASStack = new PileView(foundationPile2);
-		ASStack.setBounds (60+2*w,471, w, h);
+		ASStack.setBounds (60+2*w,511, w, h);
 		container.addWidget (ASStack);
 		
 		//add widget for Ace Diamonds Foundation Pile
 		ADStack = new PileView(foundationPile3);
-		ADStack.setBounds (70+3*w,471, w, h);
+		ADStack.setBounds (70+3*w,511, w, h);
 		container.addWidget (ADStack);
 		
 		//add widget for Ace Clubs Foundation Pile
 		ACStack = new PileView(foundationPile4);
-		ACStack.setBounds (80+4*w,471, w, h);
+		ACStack.setBounds (80+4*w,511, w, h);
 		container.addWidget (ACStack);
 		
 		//add widget for King Hearts Foundation Pile
 		KHStack = new PileView(foundationPile5);
-		KHStack.setBounds (120+5*w,471, w, h);
+		KHStack.setBounds (120+5*w,511, w, h);
 		container.addWidget (KHStack);
 		
 		//add widget for King Spades Foundation Pile
 		KSStack = new PileView(foundationPile6);
-		KSStack.setBounds (130+6*w,471, w, h);
+		KSStack.setBounds (130+6*w,511, w, h);
 		container.addWidget (KSStack);
 		
 		//add widget for King Diamonds Foundation Pile
 		KDStack = new PileView(foundationPile7);
-		KDStack.setBounds (140+7*w,471, w, h);
+		KDStack.setBounds (140+7*w,511, w, h);
 		container.addWidget (KDStack);
 		
 		//add widget for King Clubs Foundation Pile
 		KCStack = new PileView(foundationPile8);
-		KCStack.setBounds (150+8*w,471, w, h);
+		KCStack.setBounds (150+8*w,511, w, h);
 		container.addWidget (KCStack);
+		
+		//add widget for Ace Reserve Pile
+		RAStack = new PileView(reservePile1);
+		RAStack.setBounds (10,491, w, h);
+		container.addWidget (RAStack);
+		
+		//add widget for Two Reserve Pile
+		R2Stack = new PileView(reservePile2);
+		R2Stack.setBounds (65,481-h, w, h);
+		container.addWidget (R2Stack);
+		
+		//add widget for Three Reserve Pile
+		R3Stack = new PileView(reservePile3);
+		R3Stack.setBounds (120,471-2*h, w, h);
+		container.addWidget (R3Stack);
+		
+		//add widget for Four Reserve Pile
+		R4Stack = new PileView(reservePile4);
+		R4Stack.setBounds (175,461-3*h, w, h);
+		container.addWidget (R4Stack);
+		
+		//add widget for Five Reserve Pile
+		R5Stack = new PileView(reservePile5);
+		R5Stack.setBounds (230,451-4*h, w, h);
+		container.addWidget (R5Stack);
+		
+		//add widget for Six Reserve Pile
+		R6Stack = new PileView(reservePile6);
+		R6Stack.setBounds (250+w, 420-4*h, w, h);
+		container.addWidget (R6Stack);
+		
+		//add widget for Seven Reserve Pile
+		R7Stack = new PileView(reservePile7);
+		R7Stack.setBounds (280+2*w,400-4*h, w, h);
+		container.addWidget (R7Stack);
+		
+		//add widget for Eight Reserve Pile
+		R8Stack = new PileView(reservePile8);
+		R8Stack.setBounds (8*w-50,420-4*h, w, h);
+		container.addWidget (R8Stack);
+		
+		//add widget for Nine Reserve Pile
+		R9Stack = new PileView(reservePile9);
+		R9Stack.setBounds (9*w-30,451-4*h, w, h);
+		container.addWidget (R9Stack);
+		
+		//add widget for Ten Reserve Pile
+		R10Stack = new PileView(reservePile10);
+		R10Stack.setBounds (9*w+25,461-3*h, w, h);
+		container.addWidget (R10Stack);
+		
+		//add widget for Jack Reserve Pile
+		RJStack = new PileView(reservePile11);
+		RJStack.setBounds (9*w+80,471-2*h, w, h);
+		container.addWidget (RJStack);
+		
+		//add widget for Queen Reserve Pile
+		RQStack = new PileView(reservePile12);
+		RQStack.setBounds (9*w+135,481-h, w, h);
+		container.addWidget (RQStack);
+		
+		//add widget for King Reserve Pile
+		RKStack = new PileView(reservePile13);
+		RKStack.setBounds (9*w+190,491, w, h);
+		container.addWidget (RKStack);
+		
+		//add widget for First Tableau Pile
+		tv1 = new ColumnView(tableauColumn1);
+		tv1.setBounds (312,140, w, h + 12*delta);
+		container.addWidget (tv1);
+		
+		//add widget for Second Tableau Pile
+		tv2 = new ColumnView(tableauColumn2);
+		tv2.setBounds (317+w,140, w, h + 12*delta);
+		container.addWidget (tv2);
+		
+		//add widget for Third Tableau Pile
+		tv3 = new ColumnView(tableauColumn3);
+		tv3.setBounds (322+2*w,140, w, h + 12*delta);
+		container.addWidget (tv3);
+		
+		//add widget for Fourth Tableau Pile
+		tv4 = new ColumnView(tableauColumn4);
+		tv4.setBounds (327+3*w,140, w, h + 12*delta);
+		container.addWidget (tv4);
+		
+		//add widget for the Score View
+		scoreView = new IntegerView (getScore());
+		scoreView.setBounds (765, 30, 160, 70);
+		container.addWidget (scoreView);
+
+		//add widget for the Cards Left View
+		cardsLeftView = new IntegerView (getNumLeft());
+		cardsLeftView.setFontSize (14);
+		cardsLeftView.setBounds (765, 110, 160, 60);
+		container.addWidget (cardsLeftView);
 	}
 	
 	/** Code to launch solitaire variation. */
@@ -204,7 +298,6 @@ public class Archway extends Solitaire {
 		// Seed is to ensure we get the same initial cards every time.
 		// Here the seed is to "order by suit."
 		GameWindow gw = Main.generateWindow(new Archway(), Deck.OrderBySuit);
-		
 	}
 	
 }
