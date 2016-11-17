@@ -51,6 +51,53 @@ public class Archway extends Solitaire {
 		//initialize the controllers and attach them to the GUI
 		//initializeControllers();
 		
+		//pull the top 48 cards off of the deck one by one and add them to the tableau
+		//piles one pile after another (first card goes in pile one, second in pile two, ...etc.)
+		for (int i=0; i < 48; i++){
+			Card c = deck.get();
+			if(i%4==0){
+				tableauColumn1.add(c);
+			} else if(i%4==1){
+				tableauColumn2.add(c);
+			} else if(i%4==2){
+				tableauColumn3.add(c);
+			} else if(i%4==3){
+				tableauColumn4.add(c);
+			}
+		}
+		
+		//pulls the remaining cards in the deck (48 cards) and places
+		//them in the proper reserve piles based upon their rank
+		for (int i=0; i < 48; i++){
+			Card c = deck.get();
+			if(c.getRank()==1){//if ace
+				reservePile1.add(c);
+			} else if(c.getRank()==2){//if two
+				reservePile2.add(c);
+			} else if(c.getRank()==3){//if three
+				reservePile3.add(c);
+			} else if(c.getRank()==4){//if four
+				reservePile4.add(c);
+			}else if(c.getRank()==5){//if five
+				reservePile5.add(c);
+			}else if(c.getRank()==6){//if six
+				reservePile6.add(c);
+			}else if(c.getRank()==7){//if seven
+				reservePile7.add(c);
+			}else if(c.getRank()==8){//if eight
+				reservePile8.add(c);
+			}else if(c.getRank()==9){//if nine
+				reservePile9.add(c);
+			}else if(c.getRank()==10){//if ten
+				reservePile10.add(c);
+			}else if(c.getRank()==11){//if jack
+				reservePile11.add(c);
+			}else if(c.getRank()==12){//if queen
+				reservePile12.add(c);
+			}else if(c.getRank()==13){//if king
+				reservePile13.add(c);
+			}
+		}
 	}
 	
 	//initializes the controllers and attaches them to the GUI view objects
