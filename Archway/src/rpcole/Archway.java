@@ -178,61 +178,67 @@ public class Archway extends Solitaire {
 				reservePile13.add(c);
 			}
 		}
+		
+		int initialCards = reservePile1.count()+reservePile2.count()+reservePile3.count()+reservePile4.count()+
+				reservePile5.count()+reservePile6.count()+reservePile7.count()+reservePile8.count()+
+				reservePile9.count()+reservePile10.count()+reservePile11.count()+reservePile12.count()+reservePile13.count();
+		
+		updateNumberCardsLeft(initialCards);
+		updateScore(0);
 	}
 
 	//initializes the controllers and attaches them to the GUI view objects
 	private void initializeControllers() {
-		// TODO Auto-generated method stub
 
-		RAStack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile1));
+		RAStack.setMouseAdapter(new ArchwayReservePileController (this, reservePile1, RAStack));
 		RAStack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		RAStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R2Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile2));
+		R2Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile2, R2Stack));
 		R2Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R2Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R3Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile3));
+		R3Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile3, R3Stack));
 		R3Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R3Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R4Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile4));
+		R4Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile4, R4Stack));
 		R4Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R4Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R5Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile5));
+		R5Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile5, R5Stack));
 		R5Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R5Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R6Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile6));
+		R6Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile6, R6Stack));
 		R6Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R6Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R7Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile7));
+		R7Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile7, R7Stack));
 		R7Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R7Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R8Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile8));
+		R8Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile8, R8Stack));
 		R8Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R8Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R9Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile9));
+		R9Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile9, R9Stack));
 		R9Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R9Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		R10Stack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile10));
+		R10Stack.setMouseAdapter(new ArchwayReservePileController (this, reservePile10, R10Stack));
 		R10Stack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		R10Stack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		RJStack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile11));
+		RJStack.setMouseAdapter(new ArchwayReservePileController (this, reservePile11, RJStack));
 		RJStack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		RJStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		RQStack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile12));
+		RQStack.setMouseAdapter(new ArchwayReservePileController (this, reservePile12, RQStack));
 		RQStack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		RQStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 		
-		RKStack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile13));
+		RKStack.setMouseAdapter(new ArchwayReservePileController (this, reservePile13, RKStack));
 		RKStack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		RKStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 	}
@@ -322,6 +328,7 @@ public class Archway extends Solitaire {
 
 		foundationPile8 = new Pile ("fp8");
 		model.addElement (foundationPile8);
+		
 	}
 
 	//initializes the View with

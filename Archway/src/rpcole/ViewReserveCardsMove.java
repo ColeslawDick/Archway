@@ -29,11 +29,11 @@ public class ViewReserveCardsMove extends Move{
 	@Override
 	public boolean undo(Solitaire game) {
 		Pile p = new Pile(); //create hidden pile
-		for(int i = 0; i < source.count(); i++){
-			//add top card from source to hidden pile
-			Card c = source.get(); 
-			p.add(c); 
+		// must add stack from the bottom up...
+		for (int i = 1; i < source.count(); i++) {
+			p.add(source.peek (i));
 		}
+		p.add(source.peek(0));
 		source.removeAll(); //clear source
 		source.push(p); //add cards in hidden pile to source pile from the bottom up
 		return true;
