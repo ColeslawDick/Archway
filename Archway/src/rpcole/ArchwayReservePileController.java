@@ -3,9 +3,17 @@ package rpcole;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import heineman.klondike.MoveColumnMove;
+import heineman.klondike.MoveWasteToPileMove;
+import ks.common.model.BuildablePile;
+import ks.common.model.Card;
+import ks.common.model.Column;
 import ks.common.model.Move;
 import ks.common.model.Pile;
+import ks.common.model.Stack;
+import ks.common.view.BuildablePileView;
 import ks.common.view.CardView;
+import ks.common.view.ColumnView;
 import ks.common.view.Container;
 import ks.common.view.PileView;
 import ks.common.view.Widget;
@@ -22,29 +30,28 @@ public class ArchwayReservePileController extends MouseAdapter{
 		this.rPileView = view;
 	}
 
+	//double click to see the next card in the Reserve Pile
 	@Override
-	public void mousePressed(MouseEvent me){
-		//System.out.println("took press");
-		//attempting to view the next card in the Reserve Pile
-		Move m = new ViewReserveCardsMove(rPile);
-		//System.out.println("made new move");
-		if(m.doMove(theGame)){
-			//System.out.println("new move ran");
-			theGame.pushMove (m);     // Successful ViewReserveCards Move
-			//System.out.println("new move pushed");
-			theGame.refreshWidgets(); // refresh updated widgets
-			//System.out.println("repaint");
+	public void mouseClicked(MouseEvent me){
+		if(me.getClickCount() > 1){
+			//attempting to view the next card in the Reserve Pile
+			Move m = new ViewReserveCardsMove(rPile);
+			if(m.doMove(theGame)){
+				theGame.pushMove (m);     // Successful ViewReserveCards Move
+				theGame.refreshWidgets(); // refresh updated widgets
+			}
 		}
 	}
 
+	//click and drag to move card to foundation
 	@Override
-	public void mouseReleased(MouseEvent me) {
+	public void mousePressed(MouseEvent me) {
 		//get container
 		Container c = theGame.getContainer();
 
 		//exit if pile has no cards
 		if (rPile.count() == 0) {
-			c.releaseDraggingObject();
+			c.releaseDraggingObject(); //do I need this?? will it let me place a card in an empty pile?
 			return;
 		}
 
@@ -57,7 +64,7 @@ public class ArchwayReservePileController extends MouseAdapter{
 			return;
 		}
 
-		//check if anything is being dragged and retunr message if so
+		//check if anything is being dragged and return message if so
 		Widget w = c.getActiveDraggingObject();
 		if (w != Container.getNothingBeingDragged()) {
 			System.err.println ("WastePileController::mousePressed(): Unexpectedly encountered a Dragging Object during a Mouse press.");
@@ -72,5 +79,38 @@ public class ArchwayReservePileController extends MouseAdapter{
 
 		//redraw the PileView even though nothing will change
 		rPileView.redraw();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent me) {
+		//get the container
+		Container c = theGame.getContainer();
+
+		//return if no card being dragged
+		Widget w = c.getActiveDraggingObject();
+		if (w == Container.getNothingBeingDragged()) {
+			c.releaseDraggingObject();		
+			return;
+		}
+
+		//must have a dragged object which must be a card
+		//return with error if widget in container has no source
+		Widget fromWidget = c.getDragSource();
+		if (fromWidget == null) {
+			System.err.println ("ArchwayReservePileController::mouseReleased(): somehow no dragSource in container.");
+			c.releaseDraggingObject();
+			return;
+		}
+
+		//if there is a card, it should be returned to whence it came
+		//has to be a stack because it had to come from a Pile or Column, both of which are Stacks
+		Stack s = (Stack) fromWidget.getModelElement();
+		Card card = (Card) c.getActiveDraggingObject().getModelElement();
+		s.add(card);
+
+		// release the dragging object, (container will reset dragSource)
+		c.releaseDraggingObject();
+
+		c.repaint();
 	}
 }
