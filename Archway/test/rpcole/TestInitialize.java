@@ -22,7 +22,7 @@ public class TestInitialize extends TestCase {
 	}
 
 	public void testInitializeFoundationCards(){
-		//check that the proper card is in each foundation pile
+		//check that the foundation piles have the correct cards
 		assertTrue(archway.foundationPile1.toString().equals("[Pile:fp1:AH]"));
 		assertTrue(archway.foundationPile2.toString().equals("[Pile:fp2:AS]"));
 		assertTrue(archway.foundationPile3.toString().equals("[Pile:fp3:AD]"));
@@ -34,7 +34,7 @@ public class TestInitialize extends TestCase {
 	}
 	
 	public void testInitializeTableauCards(){
-		//check that the proper card is in on top of each tableau pile
+		//check that the tableau piles have the proper cards in the correct order
 		assertTrue(archway.tableauColumn1.toString().equals("[Column:tc1:QS,8S,4S,JH,7H,3H,10D,6D,2D,9C,5C,KS]"));
 		assertTrue(archway.tableauColumn2.toString().equals("[Column:tc2:JS,7S,3S,10H,6H,2H,9D,5D,QC,8C,4C,QS]"));
 		assertTrue(archway.tableauColumn3.toString().equals("[Column:tc3:10S,6S,2S,9H,5H,QD,8D,4D,JC,7C,3C,JS]"));
@@ -42,7 +42,7 @@ public class TestInitialize extends TestCase {
 	}
 	
 	public void testInitializeReserveCards(){
-		//check that the proper card is on top of each reserve pile
+		//check that the reserve piles contain the proper cards in the correct order
 		assertTrue(archway.reservePile1.toString().equals("[Pile:rp1:AS,AH,AD,AC]"));
 		assertTrue(archway.reservePile2.toString().equals("[Pile:rp2:2S,2H,2D,2C]"));
 		assertTrue(archway.reservePile3.toString().equals("[Pile:rp3:3S,3H,3D,3C]"));
@@ -56,5 +56,11 @@ public class TestInitialize extends TestCase {
 		assertTrue(archway.reservePile11.toString().equals("[Pile:rp11:JH,JD,JC]"));
 		assertTrue(archway.reservePile12.toString().equals("[Pile:rp12:QH,QD,QC]"));
 		assertTrue(archway.reservePile13.toString().equals("[Pile:rp13:KH,KD,KC]"));
+	}
+	
+	public void testInitializeDeckEmpty(){
+		//check that deck is empty after all cards should have been dealt
+		assertTrue(archway.deck.count()==0);
+		assertNull(archway.deck.get());
 	}
 }
