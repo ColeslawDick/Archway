@@ -1,10 +1,15 @@
 package rpcole;
 
-import ks.tests.KSTestCase;
+import junit.framework.TestCase;
 
-public class TestInitialize extends KSTestCase{
+public class TestInitialize extends TestCase {
 
-	Archway archway;
-	
-	
+	protected void setUp() throws Exception {
+		super.setUp();
+	}
+
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+
 }
