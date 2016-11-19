@@ -59,7 +59,7 @@ public class Archway extends Solitaire {
 		//initialize the GUI
 		initializeView();
 		//initialize the controllers and attach them to the GUI
-		//initializeControllers();
+		initializeControllers();
 
 		//pull the top 48 cards off of the deck one by one and add them to the tableau
 		//piles one pile after another (first card goes in pile one, second in pile two, ...etc.)
@@ -184,6 +184,9 @@ public class Archway extends Solitaire {
 	private void initializeControllers() {
 		// TODO Auto-generated method stub
 
+		RAStack.setMouseAdapter(new ArchwayReservePileController (this, deck, reservePile1));
+		RAStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		RAStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 	}
 
 	//initializes the model with a seed
