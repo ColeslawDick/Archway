@@ -60,7 +60,7 @@ public class TestInitialize extends TestCase {
 	
 	public void testInitializeDeckEmpty(){
 		//check that deck is empty after all cards should have been dealt
-		assertTrue(archway.deck.count()==0);
+		assertTrue(archway.deck.count() == 0);
 		assertNull(archway.deck.get());
 	}
 }
