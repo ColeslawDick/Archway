@@ -3,17 +3,11 @@ package rpcole;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import heineman.klondike.MoveColumnMove;
-import heineman.klondike.MoveWasteToPileMove;
-import ks.common.model.BuildablePile;
 import ks.common.model.Card;
-import ks.common.model.Column;
 import ks.common.model.Move;
 import ks.common.model.Pile;
 import ks.common.model.Stack;
-import ks.common.view.BuildablePileView;
 import ks.common.view.CardView;
-import ks.common.view.ColumnView;
 import ks.common.view.Container;
 import ks.common.view.PileView;
 import ks.common.view.Widget;

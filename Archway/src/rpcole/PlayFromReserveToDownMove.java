@@ -3,12 +3,12 @@ package rpcole;
 import ks.common.games.Solitaire;
 import ks.common.model.*;
 
-public class PlayFromReserveMoveToDown extends Move{
+public class PlayFromReserveToDownMove extends Move{
 
 	Pile source, target;
 	Card activeCard;
 
-	public PlayFromReserveMoveToDown(Pile source, Card card, Pile target){
+	public PlayFromReserveToDownMove(Pile source, Card card, Pile target){
 		this.source = source;
 		this.activeCard = card;
 		this.target = target;
