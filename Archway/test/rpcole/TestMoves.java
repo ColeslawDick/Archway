@@ -90,6 +90,14 @@ public class TestMoves extends TestCase {
 		assertTrue(archway.reservePile2.toString().equals("[Pile:rp2:2S,2H,2D]"));
 		assertTrue(archway.reservePile3.toString().equals("[Pile:rp3:3S,3H,3D]"));
 		assertTrue(archway.getScoreValue()==2);
+		//create FromReserveToDown Move
+		Move m2 = new PlayFromReserveToDownMove(archway.reservePile12, archway.reservePile12.get(), archway.foundationPile8);
+		//check that the move ran
+		assertTrue(m2.doMove(archway));
+		//check that top card from reserve pile is now top card of foundation and is gone from reserve
+		assertTrue(archway.foundationPile8.toString().equals("[Pile:fp8:KC,QC]"));
+		assertTrue(archway.reservePile12.toString().equals("[Pile:rp12:QH,QD]"));
+		assertTrue(archway.getScoreValue()==3);
 	}
 
 	public void testTableauToFoundation(){
@@ -118,6 +126,4 @@ public class TestMoves extends TestCase {
 		assertTrue(archway.tableauColumn2.toString().equals("[Column:tc2:JS,7S,3S,10H,6H,2H,9D,5D,QC,8C,4C]"));
 		assertTrue(archway.getScoreValue()==1);
 	}
-	
-	
 }
