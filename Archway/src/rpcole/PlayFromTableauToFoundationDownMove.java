@@ -33,13 +33,14 @@ public class PlayFromTableauToFoundationDownMove extends Move{
 	public boolean undo(Solitaire game) {
 		Card c = target.get();
 		source.add(c);
+		game.updateScore(-1);
 		return true;
 	}
 
 	@Override
 	public boolean valid(Solitaire game) {
-		int cs = target.peek(target.count()).getSuit();
-		int cr = target.peek(target.count()).getRank();
+		int cs = target.peek(target.count()-1).getSuit();
+		int cr = target.peek(target.count()-1).getRank();
 		if(activeCard.equals(new Card(cr-1, cs))){
 			return true;
 		}

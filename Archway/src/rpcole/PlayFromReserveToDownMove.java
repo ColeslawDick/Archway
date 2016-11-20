@@ -37,8 +37,8 @@ public class PlayFromReserveToDownMove extends Move{
 
 	@Override
 	public boolean valid(Solitaire game) {
-		int cs = target.peek(target.count()).getSuit();
-		int cr = target.peek(target.count()).getRank();
+		int cs = target.peek(target.count()-1).getSuit();
+		int cr = target.peek(target.count()-1).getRank();
 		if(activeCard.equals(new Card(cr-1, cs))){
 			return true;
 		}
