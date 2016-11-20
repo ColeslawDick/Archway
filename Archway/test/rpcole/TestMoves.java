@@ -102,6 +102,12 @@ public class TestMoves extends TestCase {
 		assertTrue(archway.foundationPile8.toString().equals("[Pile:fp8:KC,QC]"));
 		assertTrue(archway.reservePile12.toString().equals("[Pile:rp12:QH,QD]"));
 		assertEquals(3,archway.getScoreValue());
+		//check undo
+		assertTrue(m2.undo(archway));
+		//check that top card from reserve pile is now top card of foundation and is gone from reserve
+		assertTrue(archway.foundationPile8.toString().equals("[Pile:fp8:KC]"));
+		assertTrue(archway.reservePile12.toString().equals("[Pile:rp12:QH,QD,QC]"));
+		assertEquals(2,archway.getScoreValue());
 	}
 
 	public void testTableauToFoundation(){
@@ -130,6 +136,7 @@ public class TestMoves extends TestCase {
 		assertTrue(archway.tableauColumn2.toString().equals("[Column:tc2:JS,7S,3S,10H,6H,2H,9D,5D,QC,8C,4C]"));
 		assertEquals(1,archway.getScoreValue());
 	}
+
 	public void testTableauToFoundationUp(){
 		ModelFactory.init(archway.foundationPile2, "AS 2S 3S 4S 5S 6S 7S 8S 9S");
 		assertEquals ("9S", archway.foundationPile2.peek().toString());
@@ -161,6 +168,37 @@ public class TestMoves extends TestCase {
 		assertTrue(archway.tableauColumn4.toString().equals("[Column:tc4:9S,5S,QH,8H,4H,JD,7D,3D,10C,6C,2C,10S]"));
 		assertTrue(archway.tableauColumn3.toString().equals("[Column:tc3:10S,6S,2S,9H,5H,QD,8D,4D,JC,7C,3C,JS]"));
 		assertEquals(0,archway.getScoreValue());
-		
+	}
+
+	public void testFoundationsMove(){
+		//set up foundation piles and check them
+		ModelFactory.init(archway.foundationPile2, "AS 2S 3S 4S 5S 6S 7S 8S 9S");
+		ModelFactory.init(archway.foundationPile6, "KS QS JS 10S");
+		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S,9S]", archway.foundationPile2.toString());
+		assertEquals ("[Pile:fp6:KS,QS,JS,10S]", archway.foundationPile6.toString());
+		//create FoundationtoUp Move
+		Move m = new PlayFromFoundationToUpMove(archway.foundationPile6, archway.foundationPile6.get(), archway.foundationPile2);
+		//do toUp Move
+		assertTrue(m.doMove(archway));
+		//check state is correct
+		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S,9S,10S]", archway.foundationPile2.toString());
+		assertEquals ("[Pile:fp6:KS,QS,JS]", archway.foundationPile6.toString());
+		//undo toUp Move
+		assertTrue(m.undo(archway));
+		//check state is correct
+		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S,9S]", archway.foundationPile2.toString());
+		assertEquals ("[Pile:fp6:KS,QS,JS,10S]", archway.foundationPile6.toString());
+		//create FoundationtoUp Move
+		Move m1 = new PlayFromFoundationToDownMove(archway.foundationPile2, archway.foundationPile2.get(), archway.foundationPile6);
+		//do toDown Move
+		assertTrue(m1.doMove(archway));
+		//check state is correct
+		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S]", archway.foundationPile2.toString());
+		assertEquals ("[Pile:fp6:KS,QS,JS,10S,9S]", archway.foundationPile6.toString());
+		//undo toDown Move
+		assertTrue(m1.undo(archway));
+		//check state is correct
+		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S,9S]", archway.foundationPile2.toString());
+		assertEquals ("[Pile:fp6:KS,QS,JS,10S]", archway.foundationPile6.toString());
 	}
 }

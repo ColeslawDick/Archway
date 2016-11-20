@@ -44,6 +44,7 @@ public class PlayFromReserveToDownMove extends Move{
 	public boolean undo(Solitaire game) {
 		Card c = target.get();
 		source.add(c);
+		game.updateScore(-1);//add one to score
 		return true;
 	}
 
