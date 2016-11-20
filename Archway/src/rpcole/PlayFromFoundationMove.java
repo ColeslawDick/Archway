@@ -8,6 +8,12 @@ public class PlayFromFoundationMove extends Move{
 	Pile source, target;
 	Card activeCard;
 	
+	public PlayFromFoundationMove(Pile fromPile, Card card, Pile toPile){
+		this.source = fromPile;
+		this.activeCard = card;
+		this.target = toPile;
+	}
+	
 	@Override
 	public boolean doMove(Solitaire game) {
 		// TODO Auto-generated method stub

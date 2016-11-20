@@ -241,6 +241,54 @@ public class Archway extends Solitaire {
 		RKStack.setMouseAdapter(new ArchwayReservePileController (this, reservePile13, RKStack));
 		RKStack.setUndoAdapter (new SolitaireUndoAdapter(this));
 		RKStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		AHStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile1, AHStack));
+		AHStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		AHStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		ASStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile2, ASStack));
+		ASStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		ASStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		ADStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile3, ADStack));
+		ADStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		ADStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		ACStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile4, ACStack));
+		ACStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		ACStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		KHStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile5, KHStack));
+		KHStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		KHStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		KSStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile6, KSStack));
+		KSStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		KSStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		KDStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile7, KDStack));
+		KDStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		KDStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		KCStack.setMouseAdapter(new ArchwayFoundationPileController(this, foundationPile8, KCStack));
+		KCStack.setUndoAdapter (new SolitaireUndoAdapter(this));
+		KCStack.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		tv1.setMouseAdapter(new ArchwayTableauColumnController(this, tableauColumn1, tv1));
+		tv1.setUndoAdapter (new SolitaireUndoAdapter(this));
+		tv1.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		tv2.setMouseAdapter(new ArchwayTableauColumnController(this, tableauColumn2, tv2));
+		tv2.setUndoAdapter (new SolitaireUndoAdapter(this));
+		tv2.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		tv3.setMouseAdapter(new ArchwayTableauColumnController(this, tableauColumn3, tv3));
+		tv3.setUndoAdapter (new SolitaireUndoAdapter(this));
+		tv3.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		tv4.setMouseAdapter(new ArchwayTableauColumnController(this, tableauColumn4, tv4));
+		tv4.setUndoAdapter (new SolitaireUndoAdapter(this));
+		tv4.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 	}
 
 	//initializes the model with a seed

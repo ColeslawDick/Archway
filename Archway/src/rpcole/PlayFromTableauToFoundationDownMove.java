@@ -3,17 +3,18 @@ package rpcole;
 import ks.common.games.Solitaire;
 import ks.common.model.*;
 
-public class PlayFromTableauToTableauMove extends Move{
+public class PlayFromTableauToFoundationDownMove extends Move{
 
-	Column source, target;
+	Column source;
+	Pile target;
 	Card activeCard;
-	
-	public PlayFromTableauToTableauMove(Column fromColumn, Card card, Column toColumn){
+
+	public PlayFromTableauToFoundationDownMove(Column fromColumn, Card card, Pile toPile){
 		this.source = fromColumn;
 		this.activeCard = card;
-		this.target = toColumn;
+		this.target = toPile;
 	}
-	
+
 	@Override
 	public boolean doMove(Solitaire game) {
 		if (!valid(game)){//invalid move
@@ -24,6 +25,7 @@ public class PlayFromTableauToTableauMove extends Move{
 		} else { //does not have active card
 			target.add(source.get());
 		}
+		game.updateScore(1);//add one to score
 		return true;
 	}
 
@@ -36,7 +38,9 @@ public class PlayFromTableauToTableauMove extends Move{
 
 	@Override
 	public boolean valid(Solitaire game) {
-		if(target.count()==0){
+		int cs = target.peek(target.count()).getSuit();
+		int cr = target.peek(target.count()).getRank();
+		if(activeCard.equals(new Card(cr-1, cs))){
 			return true;
 		}
 		return false;
