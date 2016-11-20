@@ -25,6 +25,7 @@ public class PlayFromReserveToDownMove extends Move{
 			target.add(source.get());
 		}
 		game.updateScore(1);//add one to score
+		game.updateNumberCardsLeft(-1);//subtract one from cards left
 		return true;
 	}
 
@@ -33,6 +34,7 @@ public class PlayFromReserveToDownMove extends Move{
 		Card c = target.get();
 		source.add(c);
 		game.updateScore(-1);//add one to score
+		game.updateNumberCardsLeft(1);//add one to cards left
 		return true;
 	}
 

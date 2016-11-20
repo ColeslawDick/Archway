@@ -45,7 +45,7 @@ public class ArchwayReservePileController extends MouseAdapter{
 
 		//exit if pile has no cards
 		if (rPile.count() == 0) {
-			c.releaseDraggingObject(); //do I need this?? will it let me place a card in an empty pile?
+			c.releaseDraggingObject();
 			return;
 		}
 

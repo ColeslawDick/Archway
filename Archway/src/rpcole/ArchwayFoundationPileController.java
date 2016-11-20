@@ -84,72 +84,73 @@ public class ArchwayFoundationPileController extends MouseAdapter{
 			return;
 		}
 
+
 		//if there is a card, it either gets added to the foundation pile, or sent back from whence it came
 		//has to be a stack because it had to come from a Pile or Column, both of which are Stacks
 		Stack s = (Stack) fromWidget.getModelElement();
 		Card card = (Card) c.getActiveDraggingObject().getModelElement();
-		int cs = fPile.peek(fPile.count()).getSuit();
-		int cr = fPile.peek(fPile.count()).getRank();
+		int cs = fPile.peek(fPile.count()-1).getSuit();
+		int cr = fPile.peek(fPile.count()-1).getRank();
 
 		if((fPile == theGame.foundationPile1 || fPile == theGame.foundationPile2 || 
-				fPile == theGame.foundationPile3 || fPile == theGame.foundationPile1) 
-				&& card.equals(new Card(cr+1, cs))){ //target Pile is a Up Foundation and is valid
-			//if from Pile, must be from Foundation or Reserve Pile
-			if(fromWidget instanceof PileView){
-				if(s == theGame.foundationPile5 || s == theGame.foundationPile6 || 
-						s == theGame.foundationPile7 || s == theGame.foundationPile8){ //is from a Foundation Pile
-					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromFoundationToUpMove((Pile) s, card, fPile);
-					if(m.doMove(theGame)){
-						theGame.pushMove (m);     // Successful ViewReserveCards Move
-						theGame.refreshWidgets(); // refresh updated widgets
-					}
-				} else { //must be Reserve Pile
-					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromReserveToUpMove((Pile) s, card, fPile);
-					if(m.doMove(theGame)){
-						theGame.pushMove (m);     // Successful ViewReserveCards Move
-						theGame.refreshWidgets(); // refresh updated widgets
-					}
+				fPile == theGame.foundationPile3 || fPile == theGame.foundationPile4) 
+				&& fPile.count() <= 12 && card.equals(new Card(cr+1, cs))){//got released in Up Pile (1-4) and is valid card to go there
+			if(s == theGame.foundationPile5 || s == theGame.foundationPile6 || 
+					s == theGame.foundationPile7 || s == theGame.foundationPile8){//from Foundation Pile
+				Move m = new PlayFromFoundationToUpMove((Pile) s, card, fPile);
+				if(m.doMove(theGame)){//move runs
+					theGame.pushMove (m);     // Successful ViewReserveCards Move
+					theGame.refreshWidgets(); // refresh updated widgets
 				}
-			} else { //must be from Tableau Column
-				//attempting to move the card to the Foundation Pile
+			} else if(s == theGame.reservePile1 || s == theGame.reservePile2 || 
+					s == theGame.reservePile3 || s == theGame.reservePile4 ||
+					s == theGame.reservePile5 || s == theGame.reservePile6 || 
+					s == theGame.reservePile7 || s == theGame.reservePile8 || 
+					s == theGame.reservePile9 || s == theGame.reservePile10 || 
+					s == theGame.reservePile11 || s == theGame.reservePile12 ||
+					s == theGame.reservePile13) {//from Reserve Pile
+				Move m = new PlayFromReserveToUpMove((Pile) s, card, fPile);
+				if(m.doMove(theGame)){//move runs
+					theGame.pushMove (m);     // Successful ViewReserveCards Move
+					theGame.refreshWidgets(); // refresh updated widgets
+				}
+			} else {//from Tableau Column
 				Move m = new PlayFromTableauToFoundationUpMove((Column) s, card, fPile);
-				if(m.doMove(theGame)){
+				if(m.doMove(theGame)){//move runs
 					theGame.pushMove (m);     // Successful ViewReserveCards Move
 					theGame.refreshWidgets(); // refresh updated widgets
 				}
 			}
 		} else if ((fPile == theGame.foundationPile5 || fPile == theGame.foundationPile6 || 
 				fPile == theGame.foundationPile7 || fPile == theGame.foundationPile8) 
-				&& card.equals(new Card(cr-1, cs))){ //target Pile is a Down Foundation and is valid
-			//if from Pile, must be from Foundation or Reserve Pile
-			if(fromWidget instanceof PileView){
-				if(s == theGame.foundationPile1 || s == theGame.foundationPile2 || 
-						s == theGame.foundationPile3 || s == theGame.foundationPile1){ //is from a Foundation Pile
-					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromFoundationToDownMove((Pile) s, card, fPile);
-					if(m.doMove(theGame)){
-						theGame.pushMove (m);     // Successful ViewReserveCards Move
-						theGame.refreshWidgets(); // refresh updated widgets
-					}
-				} else { //must be Reserve Pile
-					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromReserveToDownMove((Pile) s, card, fPile);
-					if(m.doMove(theGame)){
-						theGame.pushMove (m);     // Successful ViewReserveCards Move
-						theGame.refreshWidgets(); // refresh updated widgets
-					}
+				&& fPile.count() <= 12 && card.equals(new Card(cr-1, cs))) {//got released in Down Pile (5-8) and is valid card to go there
+			if(s == theGame.foundationPile1 || s == theGame.foundationPile2 || 
+					s == theGame.foundationPile3 || s == theGame.foundationPile4){//from Foundation Pile
+				Move m = new PlayFromFoundationToDownMove((Pile) s, card, fPile);
+				if(m.doMove(theGame)){//move runs
+					theGame.pushMove (m);     // Successful ViewReserveCards Move
+					theGame.refreshWidgets(); // refresh updated widgets
 				}
-			} else { //must be from Tableau Column
-				//attempting to move the card to the Foundation Pile
+			} else if(s == theGame.reservePile1 || s == theGame.reservePile2 || 
+					s == theGame.reservePile3 || s == theGame.reservePile4 ||
+					s == theGame.reservePile5 || s == theGame.reservePile6 || 
+					s == theGame.reservePile7 || s == theGame.reservePile8 || 
+					s == theGame.reservePile9 || s == theGame.reservePile10 || 
+					s == theGame.reservePile11 || s == theGame.reservePile12 ||
+					s == theGame.reservePile13) {//from Reserve Pile
+				Move m = new PlayFromReserveToDownMove((Pile) s, card, fPile);
+				if(m.doMove(theGame)){//move runs
+					theGame.pushMove (m);     // Successful ViewReserveCards Move
+					theGame.refreshWidgets(); // refresh updated widgets
+				}
+			} else {//from Tableau Column
 				Move m = new PlayFromTableauToFoundationDownMove((Column) s, card, fPile);
-				if(m.doMove(theGame)){
+				if(m.doMove(theGame)){//move runs
 					theGame.pushMove (m);     // Successful ViewReserveCards Move
 					theGame.refreshWidgets(); // refresh updated widgets
 				}
 			}
-		} else { // move is not valid
+		} else {//got released in Foundation Pile but is not valid
 			s.add(card);
 		}
 

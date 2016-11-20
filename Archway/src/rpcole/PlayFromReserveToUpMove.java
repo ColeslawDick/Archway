@@ -25,6 +25,7 @@ public class PlayFromReserveToUpMove extends Move{
 			target.add(source.get());
 		}
 		game.updateScore(1);//add one to score
+		game.updateNumberCardsLeft(-1);//subtract one from cards left
 		return true;
 	}
 
@@ -32,7 +33,8 @@ public class PlayFromReserveToUpMove extends Move{
 	public boolean undo(Solitaire game) {
 		Card c = target.get();
 		source.add(c);
-		game.updateScore(-1);
+		game.updateScore(-1);//subtract one from score
+		game.updateNumberCardsLeft(1);//add one to cards left
 		return true;
 	}
 
