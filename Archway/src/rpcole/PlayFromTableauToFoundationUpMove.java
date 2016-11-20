@@ -14,18 +14,6 @@ public class PlayFromTableauToFoundationUpMove extends Move{
 		this.activeCard = card;
 		this.target = toPile;
 	}
-
-	public Column getSource(){
-		return this.source;
-	}
-	
-	public Pile getTarget(){
-		return this.target;
-	}
-	
-	public Card getActiveCard(){
-		return this.activeCard;
-	}
 	
 	@Override
 	public boolean doMove(Solitaire game) {

@@ -14,18 +14,6 @@ public class PlayFromReserveToUpMove extends Move{
 		this.target = target;
 	}
 	
-	public Pile getSource(){
-		return this.source;
-	}
-	
-	public Pile getTarget(){
-		return this.target;
-	}
-	
-	public Card getActiveCard(){
-		return this.activeCard;
-	}
-	
 	@Override
 	public boolean doMove(Solitaire game) {
 		if (!valid(game)){//invalid move
