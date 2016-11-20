@@ -99,7 +99,7 @@ public class ArchwayFoundationPileController extends MouseAdapter{
 				if(s == theGame.foundationPile5 || s == theGame.foundationPile6 || 
 						s == theGame.foundationPile7 || s == theGame.foundationPile8){ //is from a Foundation Pile
 					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromFoundationMove((Pile) s, card, fPile);
+					Move m = new PlayFromFoundationToUpMove((Pile) s, card, fPile);
 					if(m.doMove(theGame)){
 						theGame.pushMove (m);     // Successful ViewReserveCards Move
 						theGame.refreshWidgets(); // refresh updated widgets
@@ -128,7 +128,7 @@ public class ArchwayFoundationPileController extends MouseAdapter{
 				if(s == theGame.foundationPile1 || s == theGame.foundationPile2 || 
 						s == theGame.foundationPile3 || s == theGame.foundationPile1){ //is from a Foundation Pile
 					//attempting to move the card to the Foundation Pile
-					Move m = new PlayFromFoundationMove((Pile) s, card, fPile);
+					Move m = new PlayFromFoundationToDownMove((Pile) s, card, fPile);
 					if(m.doMove(theGame)){
 						theGame.pushMove (m);     // Successful ViewReserveCards Move
 						theGame.refreshWidgets(); // refresh updated widgets

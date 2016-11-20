@@ -29,6 +29,18 @@ public class PlayFromTableauToFoundationDownMove extends Move{
 		return true;
 	}
 
+	public Column getSource(){
+		return this.source;
+	}
+	
+	public Pile getTarget(){
+		return this.target;
+	}
+	
+	public Card getActiveCard(){
+		return this.activeCard;
+	}
+	
 	@Override
 	public boolean undo(Solitaire game) {
 		Card c = target.get();

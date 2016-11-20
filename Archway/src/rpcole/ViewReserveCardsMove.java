@@ -11,6 +11,11 @@ public class ViewReserveCardsMove extends Move{
 		this.source = pile;
 	}
 	
+
+	public Pile getSource(){
+		return this.source;
+	}
+	
 	//places the top card on the bottom of the pile and shows the second card in the pile
 	@Override
 	public boolean doMove(Solitaire game) {
