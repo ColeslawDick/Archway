@@ -24,7 +24,6 @@ public class PlayFromFoundationToDownMove extends Move{
 		} else { //does not have active card
 			target.add(source.get());
 		}
-		game.updateScore(1);//add one to score
 		return true;
 	}
 

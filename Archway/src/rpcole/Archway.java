@@ -32,7 +32,11 @@ public class Archway extends Solitaire {
 
 	@Override
 	public boolean hasWon() {
-		// TODO Auto-generated method stub
+		if(this.getScoreValue() == 96 && foundationPile1.count() == 13 && foundationPile2.count() == 13 &&
+				foundationPile3.count() == 13 && foundationPile4.count() == 13 && foundationPile5.count() == 13 &&
+				foundationPile6.count() == 13 && foundationPile7.count() == 13 && foundationPile8.count() == 13){
+			return true;
+		}
 		return false;
 	}
 
@@ -289,6 +293,14 @@ public class Archway extends Solitaire {
 		tv4.setMouseAdapter(new ArchwayTableauColumnController(this, tableauColumn4, tv4));
 		tv4.setUndoAdapter (new SolitaireUndoAdapter(this));
 		tv4.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		scoreView.setMouseAdapter(new ArchwayScoreViewController(this, scoreView));
+		scoreView.setUndoAdapter (new SolitaireUndoAdapter(this));
+		scoreView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
+		
+		cardsLeftView.setMouseAdapter(new ArchwayNumLeftViewController(this, cardsLeftView));
+		cardsLeftView.setUndoAdapter (new SolitaireUndoAdapter(this));
+		cardsLeftView.setMouseMotionAdapter (new SolitaireMouseMotionAdapter(this));
 	}
 
 	//initializes the model with a seed
