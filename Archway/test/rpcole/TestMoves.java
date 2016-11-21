@@ -1,5 +1,7 @@
 package rpcole;
 
+import java.awt.event.MouseEvent;
+
 import junit.framework.TestCase;
 import ks.client.gamefactory.GameWindow;
 import ks.common.model.Deck;
@@ -200,5 +202,27 @@ public class TestMoves extends TestCase {
 		//check state is correct
 		assertEquals ("[Pile:fp2:AS,2S,3S,4S,5S,6S,7S,8S,9S]", archway.foundationPile2.toString());
 		assertEquals ("[Pile:fp6:KS,QS,JS,10S]", archway.foundationPile6.toString());
+	}
+
+	public void testTableauToTableau() {
+		//set up tableau piles and check them
+		ModelFactory.init(archway.tableauColumn2, "");
+		assertEquals ("[Column:tc2:<empty>]", archway.tableauColumn2.toString());
+		assertTrue(archway.tableauColumn3.toString().equals("[Column:tc3:10S,6S,2S,9H,5H,QD,8D,4D,JC,7C,3C,JS]"));
+
+		//create PlayFromTableauToTableau Move
+		Move m = new PlayFromTableauToTableauMove(archway.tableauColumn3, archway.tableauColumn3.get(), archway.tableauColumn2);
+
+		//do toDown Move
+		assertTrue(m.doMove(archway));
+		//check card was moved
+		assertEquals ("[Column:tc2:JS]", archway.tableauColumn2.toString());
+		assertTrue(archway.tableauColumn3.toString().equals("[Column:tc3:10S,6S,2S,9H,5H,QD,8D,4D,JC,7C,3C]"));
+
+		//undo move
+		assertTrue(m.undo(archway));
+		//check is undone
+		assertEquals ("[Column:tc2:<empty>]", archway.tableauColumn2.toString());
+		assertTrue(archway.tableauColumn3.toString().equals("[Column:tc3:10S,6S,2S,9H,5H,QD,8D,4D,JC,7C,3C,JS]"));
 	}
 }
