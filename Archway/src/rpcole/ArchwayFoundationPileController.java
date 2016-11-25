@@ -89,9 +89,18 @@ public class ArchwayFoundationPileController extends MouseAdapter{
 		//has to be a stack because it had to come from a Pile or Column, both of which are Stacks
 		Stack s = (Stack) fromWidget.getModelElement();
 		Card card = (Card) c.getActiveDraggingObject().getModelElement();
+
+		if(fPile.count() == 0){//can only get here in normal play if the card carrying was from this pile
+			fPile.add(card);
+			c.releaseDraggingObject();
+			c.repaint();
+			return;
+		}
+		
+		//set values for card on top of pile for checking
 		int cs = fPile.peek(fPile.count()-1).getSuit();
 		int cr = fPile.peek(fPile.count()-1).getRank();
-
+		
 		if((fPile == theGame.foundationPile1 || fPile == theGame.foundationPile2 || 
 				fPile == theGame.foundationPile3 || fPile == theGame.foundationPile4) 
 				&& fPile.count() <= 12 && card.equals(new Card(cr+1, cs))){//got released in Up Pile (1-4) and is valid card to go there
