@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>SolitairePluginTutorial</name>
-			<type>2</type>
-			<location>C:/Users/Richard/git/cs3733b16/SolitairePluginTutorial</location>
-		</link>
-	</linkedResources>
 </projectDescription>
